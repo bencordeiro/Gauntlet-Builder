@@ -1,0 +1,300 @@
+/* Wizard shell: step rail, content column, and persistent summary. */
+
+.wizard {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) var(--summary-width);
+  gap: var(--space-8);
+  align-items: start;
+  padding: var(--space-8);
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* --- Step rail */
+
+.wizard-nav {
+  position: sticky;
+  top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.wizard-nav-progress {
+  margin-bottom: var(--space-4);
+}
+
+.wizard-progress-bar {
+  height: 4px;
+  background: var(--bg-sunken);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-2);
+}
+
+.wizard-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.wizard-progress-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.wizard-step-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.wizard-step-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.wizard-step-btn[aria-current='step'] {
+  background: var(--bg-selected);
+  color: var(--text-accent);
+  font-weight: var(--weight-medium);
+}
+
+.wizard-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+}
+
+.wizard-step-btn[aria-current='step'] .wizard-step-num {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text-on);
+}
+
+.wizard-step-btn[data-complete='true'] .wizard-step-num {
+  border-color: var(--ok-border);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.wizard-step-btn[data-blocked='true'] .wizard-step-num {
+  border-color: var(--danger-border);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* --- Content column */
+
+.wizard-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-bottom: var(--space-16);
+}
+
+.wizard-step-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.wizard-step-eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.wizard-step-title {
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.wizard-step-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  max-width: 68ch;
+  line-height: var(--leading-normal);
+}
+
+.wizard-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.wizard-section-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+.wizard-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.wizard-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  margin-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, var(--bg-app) 30%);
+  padding-bottom: var(--space-4);
+}
+
+.wizard-autosave {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* --- Summary rail */
+
+.summary-rail {
+  position: sticky;
+  top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-height: calc(100vh - var(--space-16));
+  overflow-y: auto;
+}
+
+.summary-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.summary-card-title {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+  font-size: var(--text-sm);
+  align-items: baseline;
+}
+
+.summary-row + .summary-row {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.summary-key {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.summary-value {
+  color: var(--text-primary);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.summary-value-muted {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* --- Mode switch */
+
+.wizard-mode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* --- Responsive */
+
+@media (max-width: 1240px) {
+  .wizard {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .summary-rail {
+    grid-column: 1 / -1;
+    position: static;
+    max-height: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .summary-card {
+    flex: 1 1 260px;
+  }
+}
+
+@media (max-width: 900px) {
+  .wizard {
+    grid-template-columns: 1fr;
+    padding: var(--space-5) var(--space-4) var(--space-10);
+    gap: var(--space-5);
+  }
+
+  .wizard-nav {
+    position: static;
+  }
+
+  /* On mobile the rail collapses to the progress bar plus a select. */
+  .wizard-step-list {
+    display: none;
+  }
+
+  .wizard-step-title {
+    font-size: var(--text-xl);
+  }
+
+  .wizard-footer {
+    flex-wrap: wrap;
+  }
+
+  .wizard-footer .btn {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (min-width: 901px) {
+  .wizard-step-select {
+    display: none;
+  }
+}

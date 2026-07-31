@@ -1,0 +1,116 @@
+/* Revision strategy, budgets, checkpoints, ledger. */
+
+.strategy-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-2);
+}
+
+.strategy-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.strategy-option:hover {
+  border-color: var(--border-strong);
+}
+
+.strategy-option[aria-checked='true'] {
+  border-color: var(--accent);
+  background: var(--bg-selected);
+}
+
+.strategy-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  color: transparent;
+}
+
+.strategy-option[aria-checked='true'] .strategy-marker {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text-on);
+}
+
+.strategy-name {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+}
+
+.strategy-blurb {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  margin-top: 1px;
+}
+
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-4);
+}
+
+/* --- Checkpoints */
+
+.checkpoint-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.checkpoint-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.checkpoint-side {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 190px;
+}
+
+.ledger-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-1) var(--space-4);
+}
+
+@media (max-width: 700px) {
+  .checkpoint-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkpoint-side {
+    max-width: none;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--space-3);
+  }
+}

@@ -1,0 +1,126 @@
+/* Generated output preview. */
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.preview-toolbar-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.preview-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.preview-body {
+  margin-top: var(--space-4);
+}
+
+.preview-rendered {
+  padding: var(--space-6);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-height: 68vh;
+  overflow-y: auto;
+}
+
+.preview-rendered > *:first-child {
+  margin-top: 0;
+}
+
+.preview-raw {
+  padding: var(--space-4);
+  background: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-height: 68vh;
+  overflow: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  white-space: pre;
+  tab-size: 2;
+}
+
+.preview-task {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  list-style: none !important;
+  margin-left: calc(var(--space-5) * -1);
+}
+
+.preview-task input {
+  margin-top: 4px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.preview-agent-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.preview-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media print {
+  .preview-rendered,
+  .preview-raw {
+    max-height: none;
+    overflow: visible;
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+
+  .preview-raw {
+    white-space: pre-wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .preview-rendered {
+    padding: var(--space-4);
+  }
+
+  .preview-toolbar-actions {
+    width: 100%;
+  }
+
+  .preview-toolbar-actions .btn {
+    flex: 1;
+  }
+}

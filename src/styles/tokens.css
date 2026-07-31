@@ -1,0 +1,329 @@
+/*
+ * Design tokens.
+ *
+ * One restrained accent (a deep indigo), a warm-neutral grey ramp, and semantic
+ * aliases on top so components never reference a raw ramp value. Light is the
+ * default; dark overrides only the semantic layer, which keeps the two themes
+ * from drifting apart.
+ */
+
+:root {
+  /* --- Neutral ramp (very slightly warm, so it does not read as cold blue) */
+  --grey-0: #ffffff;
+  --grey-25: #fcfcfb;
+  --grey-50: #f7f7f5;
+  --grey-100: #efefec;
+  --grey-150: #e6e6e2;
+  --grey-200: #dcdcd7;
+  --grey-300: #c4c4bd;
+  --grey-400: #a1a19a;
+  --grey-500: #7d7d76;
+  --grey-600: #5f5f59;
+  --grey-700: #474742;
+  --grey-800: #32322e;
+  --grey-850: #262622;
+  --grey-900: #1c1c19;
+  --grey-950: #131311;
+
+  /* --- Accent: indigo. Used sparingly, for selection and primary action. */
+  --accent-50: #eef0fd;
+  --accent-100: #dde1fb;
+  --accent-200: #bcc3f7;
+  --accent-300: #939ef0;
+  --accent-400: #6b76e6;
+  --accent-500: #4f56d6;
+  --accent-600: #3f41b8;
+  --accent-700: #343593;
+  --accent-800: #2b2c76;
+  --accent-900: #22225c;
+
+  /* --- Status hues */
+  --red-100: #fbe0dd;
+  --red-300: #f0a099;
+  --red-500: #c8382a;
+  --red-600: #a92c20;
+  --red-700: #85231a;
+  --amber-100: #fbeed2;
+  --amber-300: #eec871;
+  --amber-500: #b8811a;
+  --amber-600: #986a12;
+  --amber-700: #78530d;
+  --green-100: #dcf0e0;
+  --green-300: #90cea0;
+  --green-500: #2f8347;
+  --green-600: #256b3a;
+  --green-700: #1c5229;
+  --blue-100: #d9e8f8;
+  --blue-300: #8fbde6;
+  --blue-500: #2b6ca3;
+  --blue-600: #225784;
+
+  /* --- Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', 'Roboto Mono',
+    Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;  /* 11px — labels, meta */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.8125rem;   /* 13px — dense UI text */
+  --text-base: 0.875rem;  /* 14px — body */
+  --text-md: 0.9375rem;   /* 15px — comfortable body */
+  --text-lg: 1.0625rem;   /* 17px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-caps: 0.06em;
+
+  /* --- Spacing: 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* --- Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-full: 999px;
+
+  /* --- Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 320ms;
+
+  --layout-max: 1440px;
+  --sidebar-width: 232px;
+  --summary-width: 300px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Semantic layer — light
+ * ------------------------------------------------------------------ */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-app: var(--grey-50);
+  --bg-surface: var(--grey-0);
+  --bg-surface-raised: var(--grey-0);
+  --bg-sunken: var(--grey-100);
+  --bg-inset: var(--grey-50);
+  --bg-hover: var(--grey-100);
+  --bg-active: var(--grey-150);
+  --bg-selected: var(--accent-50);
+  --bg-code: var(--grey-50);
+
+  --text-primary: var(--grey-900);
+  --text-secondary: var(--grey-600);
+  --text-tertiary: var(--grey-500);
+  --text-inverted: var(--grey-0);
+  --text-accent: var(--accent-600);
+
+  --border-subtle: var(--grey-150);
+  --border-default: var(--grey-200);
+  --border-strong: var(--grey-300);
+  --border-selected: var(--accent-500);
+
+  --accent: var(--accent-600);
+  --accent-hover: var(--accent-700);
+  --accent-soft: var(--accent-50);
+  --accent-soft-border: var(--accent-200);
+  --accent-text-on: #ffffff;
+
+  --danger: var(--red-600);
+  --danger-soft: var(--red-100);
+  --danger-border: var(--red-300);
+  --warn: var(--amber-600);
+  --warn-soft: var(--amber-100);
+  --warn-border: var(--amber-300);
+  --ok: var(--green-600);
+  --ok-soft: var(--green-100);
+  --ok-border: var(--green-300);
+  --info: var(--blue-600);
+  --info-soft: var(--blue-100);
+  --info-border: var(--blue-300);
+
+  --shadow-xs: 0 1px 2px rgb(28 28 25 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(28 28 25 / 0.07), 0 1px 2px rgb(28 28 25 / 0.04);
+  --shadow-md: 0 4px 12px rgb(28 28 25 / 0.08), 0 1px 3px rgb(28 28 25 / 0.05);
+  --shadow-lg: 0 12px 32px rgb(28 28 25 / 0.12), 0 2px 8px rgb(28 28 25 / 0.06);
+  --shadow-focus: 0 0 0 3px rgb(79 86 214 / 0.28);
+
+  /* Diagram-specific, so node fills stay legible in both themes. */
+  --node-build: #f3f6fd;
+  --node-build-border: #b9c4ea;
+  --node-review: #fdf3ef;
+  --node-review-border: #e9c0ac;
+  --node-orchestrate: #f1f0fa;
+  --node-orchestrate-border: #c3bfe4;
+  --node-human: #eef7f0;
+  --node-human-border: #a9d3b5;
+  --edge-line: var(--grey-400);
+  --edge-line-strong: var(--accent-500);
+}
+
+/* ------------------------------------------------------------------ *
+ * Semantic layer — dark
+ * ------------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --bg-app: var(--grey-950);
+    --bg-surface: var(--grey-900);
+    --bg-surface-raised: var(--grey-850);
+    --bg-sunken: #0e0e0c;
+    --bg-inset: var(--grey-850);
+    --bg-hover: var(--grey-850);
+    --bg-active: var(--grey-800);
+    --bg-selected: rgb(79 86 214 / 0.16);
+    --bg-code: #101010;
+
+    --text-primary: var(--grey-100);
+    --text-secondary: var(--grey-400);
+    --text-tertiary: var(--grey-500);
+    --text-inverted: var(--grey-950);
+    --text-accent: var(--accent-300);
+
+    --border-subtle: #292926;
+    --border-default: #35352f;
+    --border-strong: #4a4a43;
+    --border-selected: var(--accent-400);
+
+    --accent: var(--accent-400);
+    --accent-hover: var(--accent-300);
+    --accent-soft: rgb(79 86 214 / 0.16);
+    --accent-soft-border: rgb(107 118 230 / 0.4);
+    --accent-text-on: #0f1020;
+
+    --danger: #ef8478;
+    --danger-soft: rgb(200 56 42 / 0.18);
+    --danger-border: rgb(240 160 153 / 0.34);
+    --warn: #e2b45c;
+    --warn-soft: rgb(184 129 26 / 0.18);
+    --warn-border: rgb(238 200 113 / 0.32);
+    --ok: #74c78c;
+    --ok-soft: rgb(47 131 71 / 0.2);
+    --ok-border: rgb(144 206 160 / 0.32);
+    --info: #7ab4e4;
+    --info-soft: rgb(43 108 163 / 0.2);
+    --info-border: rgb(143 189 230 / 0.32);
+
+    --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5), 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 14px rgb(0 0 0 / 0.55), 0 1px 3px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 16px 40px rgb(0 0 0 / 0.6), 0 2px 8px rgb(0 0 0 / 0.4);
+    --shadow-focus: 0 0 0 3px rgb(107 118 230 / 0.4);
+
+    --node-build: #1a1e2e;
+    --node-build-border: #3c4670;
+    --node-review: #2b1f1a;
+    --node-review-border: #6d4b39;
+    --node-orchestrate: #221f31;
+    --node-orchestrate-border: #4a4372;
+    --node-human: #172519;
+    --node-human-border: #3a6344;
+    --edge-line: var(--grey-600);
+    --edge-line-strong: var(--accent-400);
+  }
+}
+
+/* Explicit dark selection must beat the media query in both directions. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-app: var(--grey-950);
+  --bg-surface: var(--grey-900);
+  --bg-surface-raised: var(--grey-850);
+  --bg-sunken: #0e0e0c;
+  --bg-inset: var(--grey-850);
+  --bg-hover: var(--grey-850);
+  --bg-active: var(--grey-800);
+  --bg-selected: rgb(79 86 214 / 0.16);
+  --bg-code: #101010;
+
+  --text-primary: var(--grey-100);
+  --text-secondary: var(--grey-400);
+  --text-tertiary: var(--grey-500);
+  --text-inverted: var(--grey-950);
+  --text-accent: var(--accent-300);
+
+  --border-subtle: #292926;
+  --border-default: #35352f;
+  --border-strong: #4a4a43;
+  --border-selected: var(--accent-400);
+
+  --accent: var(--accent-400);
+  --accent-hover: var(--accent-300);
+  --accent-soft: rgb(79 86 214 / 0.16);
+  --accent-soft-border: rgb(107 118 230 / 0.4);
+  --accent-text-on: #0f1020;
+
+  --danger: #ef8478;
+  --danger-soft: rgb(200 56 42 / 0.18);
+  --danger-border: rgb(240 160 153 / 0.34);
+  --warn: #e2b45c;
+  --warn-soft: rgb(184 129 26 / 0.18);
+  --warn-border: rgb(238 200 113 / 0.32);
+  --ok: #74c78c;
+  --ok-soft: rgb(47 131 71 / 0.2);
+  --ok-border: rgb(144 206 160 / 0.32);
+  --info: #7ab4e4;
+  --info-soft: rgb(43 108 163 / 0.2);
+  --info-border: rgb(143 189 230 / 0.32);
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5), 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.55), 0 1px 3px rgb(0 0 0 / 0.35);
+  --shadow-lg: 0 16px 40px rgb(0 0 0 / 0.6), 0 2px 8px rgb(0 0 0 / 0.4);
+  --shadow-focus: 0 0 0 3px rgb(107 118 230 / 0.4);
+
+  --node-build: #1a1e2e;
+  --node-build-border: #3c4670;
+  --node-review: #2b1f1a;
+  --node-review-border: #6d4b39;
+  --node-orchestrate: #221f31;
+  --node-orchestrate-border: #4a4372;
+  --node-human: #172519;
+  --node-human-border: #3a6344;
+  --edge-line: var(--grey-600);
+  --edge-line-strong: var(--accent-400);
+}
+
+/* Compact density trims vertical rhythm without changing type size. */
+:root[data-density='compact'] {
+  --space-3: 0.625rem;
+  --space-4: 0.8125rem;
+  --space-5: 1rem;
+  --space-6: 1.25rem;
+  --space-8: 1.625rem;
+  --space-10: 2rem;
+  --space-12: 2.25rem;
+}

@@ -1,0 +1,101 @@
+/* Communication mode picker and per-agent overrides. */
+
+.comm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: var(--space-3);
+}
+
+.comm-option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.comm-option:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.comm-option[aria-checked='true'] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  background: var(--bg-selected);
+}
+
+.comm-option-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.comm-option-name {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.comm-option-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-text-on);
+}
+
+.comm-option-blurb {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  line-height: var(--leading-snug);
+}
+
+.comm-option-consequence {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.comm-override-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(180px, 1.4fr);
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.comm-override-row + .comm-override-row {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.comm-override-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  .comm-override-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}

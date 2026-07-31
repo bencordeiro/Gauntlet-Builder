@@ -1,0 +1,152 @@
+/* Preset library. */
+
+.preset-filters {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+  align-items: center;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+.preset-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.preset-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.preset-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.preset-card-title {
+  font-size: var(--text-md);
+  min-width: 0;
+}
+
+.preset-card-summary {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.preset-card-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+  padding: var(--space-2);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.preset-card-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.preset-card-facts dt {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 1px;
+}
+
+.preset-card-facts dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.preset-card-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* --- Detail dialog */
+
+.preset-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.preset-detail-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-inset);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.preset-detail-list li strong {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.preset-detail-list li .badge {
+  align-self: flex-start;
+}
+
+.preset-detail-facts {
+  display: grid;
+  grid-template-columns: minmax(110px, 25%) 1fr;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.preset-detail-facts dt {
+  color: var(--text-tertiary);
+}
+
+.preset-detail-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 400px) {
+  .preset-card-facts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3) var(--space-2);
+  }
+
+  .preset-detail-facts {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .preset-detail-facts dd {
+    margin-bottom: var(--space-2);
+  }
+}

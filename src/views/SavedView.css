@@ -1,0 +1,126 @@
+/* Saved Gauntlets list. */
+
+.saved-filters {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+  align-items: center;
+}
+
+.saved-search {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.saved-search .input {
+  padding-left: calc(var(--space-4) + 15px);
+}
+
+.saved-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+.saved-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.saved-card:hover {
+  border-color: var(--border-strong);
+}
+
+.saved-card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.saved-card-name {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  overflow-wrap: anywhere;
+}
+
+.saved-card-name:hover {
+  color: var(--text-accent);
+}
+
+.saved-card-goal {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.saved-card-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.saved-card-facts dt {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 1px;
+}
+
+.saved-card-facts dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.saved-card-preset {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.saved-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 400px) {
+  .saved-card-facts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3) var(--space-2);
+  }
+}

@@ -1,0 +1,241 @@
+/* Workflow diagram: SVG topology view. */
+
+.diagram-wrap {
+  position: relative;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.diagram-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-4);
+}
+
+.diagram-svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* --- Nodes */
+
+.diagram-node {
+  cursor: pointer;
+}
+
+.diagram-node-box {
+  rx: 7;
+  stroke-width: 1.25;
+  transition:
+    filter var(--duration-fast) var(--ease-out),
+    stroke-width var(--duration-fast) var(--ease-out);
+}
+
+.diagram-node[data-family='production'] .diagram-node-box {
+  fill: var(--node-build);
+  stroke: var(--node-build-border);
+}
+
+.diagram-node[data-family='review'] .diagram-node-box {
+  fill: var(--node-review);
+  stroke: var(--node-review-border);
+}
+
+.diagram-node[data-family='orchestration'] .diagram-node-box {
+  fill: var(--node-orchestrate);
+  stroke: var(--node-orchestrate-border);
+}
+
+.diagram-node[data-family='human'] .diagram-node-box {
+  fill: var(--node-human);
+  stroke: var(--node-human-border);
+}
+
+.diagram-node:hover .diagram-node-box,
+.diagram-node:focus-visible .diagram-node-box {
+  stroke-width: 2;
+}
+
+.diagram-node[data-selected='true'] .diagram-node-box {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.diagram-node:focus-visible {
+  outline: none;
+}
+
+.diagram-node:focus-visible .diagram-node-box {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.diagram-node-label {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  fill: var(--text-primary);
+  pointer-events: none;
+}
+
+.diagram-node-role {
+  font-size: 9px;
+  fill: var(--text-secondary);
+  pointer-events: none;
+  letter-spacing: 0.01em;
+}
+
+/* Small filled dot marking a mandatory approver. */
+.diagram-node-gate {
+  fill: var(--accent);
+}
+
+/* --- Edges */
+
+.diagram-edge {
+  fill: none;
+  stroke: var(--edge-line);
+  stroke-width: 1.25;
+  transition: stroke var(--duration-fast) var(--ease-out), stroke-width var(--duration-fast) var(--ease-out);
+}
+
+.diagram-edge[data-feedback='true'] {
+  stroke-dasharray: 4 3;
+}
+
+.diagram-edge[data-self-tier='true'] {
+  stroke-dasharray: 2 3;
+  opacity: 0.75;
+}
+
+.diagram-edge[data-dim='true'] {
+  opacity: 0.18;
+}
+
+.diagram-edge[data-highlight='true'] {
+  stroke: var(--edge-line-strong);
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.diagram-node[data-dim='true'] {
+  opacity: 0.3;
+}
+
+/* --- Legend */
+
+.diagram-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.diagram-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.diagram-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+.diagram-legend-line {
+  width: 18px;
+  height: 0;
+  border-top: 1.5px solid var(--edge-line);
+  flex-shrink: 0;
+}
+
+.diagram-legend-line[data-style='dashed'] {
+  border-top-style: dashed;
+}
+
+/* --- Inspector shown when a node is selected */
+
+.diagram-inspector {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.diagram-inspector-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.diagram-inspector-name {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.diagram-inspector-flows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.diagram-inspector-flow-title {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-1);
+}
+
+.diagram-inspector-flow li {
+  color: var(--text-secondary);
+  padding: 1px 0;
+}
+
+.diagram-empty {
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+}
+
+/* --- Mini diagram used on preset cards */
+
+.diagram-mini {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.diagram-mini .diagram-mini-node {
+  rx: 3;
+  stroke-width: 1;
+}
+
+.diagram-mini .diagram-mini-edge {
+  fill: none;
+  stroke: var(--edge-line);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.diagram-mini .diagram-mini-edge[data-feedback='true'] {
+  stroke-dasharray: 3 2;
+}

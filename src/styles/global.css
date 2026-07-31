@@ -1,0 +1,420 @@
+/*
+ * Reset, base typography, and cross-cutting utilities.
+ * Component-specific styles live next to their components.
+ */
+
+@import './tokens.css';
+
+/* ------------------------------------------------------------------ *
+ * Reset
+ * ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: var(--text-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+#root {
+  isolation: isolate;
+}
+
+/* ------------------------------------------------------------------ *
+ * Focus — one consistent, clearly visible treatment everywhere
+ * ------------------------------------------------------------------ */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Radix sets data-state on its own triggers; keep the ring consistent. */
+[data-radix-focus-guard] {
+  position: fixed;
+}
+
+/* ------------------------------------------------------------------ *
+ * Shared utilities
+ * ------------------------------------------------------------------ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link, visible only when focused. */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-weight: var(--weight-medium);
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.scroll-x {
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stack-lg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.row-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-variant-ligatures: none;
+}
+
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* ------------------------------------------------------------------ *
+ * Scrollbars — subtle, and only where content actually scrolls
+ * ------------------------------------------------------------------ */
+
+.scroll-x::-webkit-scrollbar,
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scroll-x::-webkit-scrollbar-thumb,
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.scroll-x::-webkit-scrollbar-thumb:hover,
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+  background-clip: content-box;
+}
+
+.scroll-x::-webkit-scrollbar-track,
+.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+ * Rendered markdown (prompt preview, summaries)
+ * ------------------------------------------------------------------ */
+
+.prose {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose h1 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-6);
+}
+
+.prose h2 {
+  font-size: var(--text-lg);
+  margin-top: var(--space-6);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.prose h3 {
+  font-size: var(--text-md);
+  margin-top: var(--space-5);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-5);
+}
+
+.prose ul li {
+  list-style: disc;
+}
+
+.prose ol li {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.32em;
+}
+
+.prose pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border-default);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--bg-inset);
+  font-weight: var(--weight-semibold);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent-soft-border);
+  padding-left: var(--space-4);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion preferences
+ * ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Print — used by the print-friendly output view
+ * ------------------------------------------------------------------ */
+
+@media print {
+  :root {
+    --bg-app: #ffffff;
+    --bg-surface: #ffffff;
+    --bg-inset: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .no-print,
+  .app-sidebar,
+  .app-topbar,
+  .wizard-nav,
+  .wizard-footer,
+  .summary-rail {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .app-main,
+  .app-shell {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .prose pre,
+  .prose table,
+  .card {
+    break-inside: avoid;
+  }
+
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #555;
+  }
+}
+
+.print-only {
+  display: none;
+}
