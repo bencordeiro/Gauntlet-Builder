@@ -9,6 +9,8 @@ boundaries, communication rules, evaluation rubrics, approval policy, revision
 behaviour, regression protection, and stopping conditions — ready to paste into
 Claude Code, Codex, a research agent, or a plain chat model.
 
+![The Gauntlet Builder dashboard, showing saved Gauntlets and the preset library](docs/dashboard.png)
+
 ## The point of it
 
 An agent left to judge its own work will declare victory. A Gauntlet separates
